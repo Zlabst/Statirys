@@ -1,0 +1,40 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   Client/Client.csproj
+#	new file:   packages/Awesomium/Awesomium.Core.XML
+#	new file:   packages/Awesomium/Awesomium.Core.dll
+#	new file:   packages/Awesomium/Awesomium.Mono.XML
+#	new file:   packages/Awesomium/Awesomium.Mono.dll
+#	new file:   packages/Awesomium/Awesomium.Mono.dll.config
+#	new file:   packages/Awesomium/Awesomium.Windows.Controls.XML
+#	new file:   packages/Awesomium/Awesomium.Windows.Controls.dll
+#	new file:   packages/Awesomium/Awesomium.Windows.Forms.XML
+#	new file:   packages/Awesomium/Awesomium.Windows.Forms.dll
+#	new file:   packages/Awesomium/Design/Awesomium.Windows.Controls.Design.10.dll
+#	new file:   packages/Awesomium/Design/Awesomium.Windows.Controls.Design.11.dll
+#	new file:   packages/Awesomium/Design/Awesomium.Windows.Controls.Design.12.dll
+#	new file:   packages/Awesomium/Design/Awesomium.Windows.Forms.Design.dll
+#	new file:   packages/Awesomium/Design/README.txt
+#	new file:   packages/Awesomium/Packed/Awesomium.Core.dll
+#	new file:   packages/Awesomium/Packed/README.txt
+#	new file:   packages/Awesomium/README.txt
+#	new file:   packages/Awesomium/Setup.exe
+#	new file:   packages/Awesomium/Setup.exe.config
+#	new file:   packages/Awesomium/avcodec-53.dll
+#	new file:   packages/Awesomium/avformat-53.dll
+#	new file:   packages/Awesomium/avutil-51.dll
+#	new file:   packages/Awesomium/awesomium.dll
+#	new file:   packages/Awesomium/awesomium_process
+#	new file:   packages/Awesomium/icudt.dll
+#	new file:   packages/Awesomium/inspector.pak
+#	new file:   packages/Awesomium/libEGL.dll
+#	new file:   packages/Awesomium/libGLESv2.dll
+#	new file:   packages/Awesomium/pdf_js.pak
+#	new file:   packages/Awesomium/xinput9_1_0.dll
+#
+
