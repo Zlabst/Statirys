@@ -37,6 +37,10 @@ namespace Client.Pages
                 { AccessToken = access_token };
                 insta_id = account.InstaId.ToString();
 
+                if (ApiServer.GetAccount(account.InstaId)==null)
+                {
+                    ApiServer.PostAccount(account);
+                }
             }
             catch
             {

@@ -35,7 +35,7 @@ namespace Client.Content
                     PrintGraphicFollowing();
                 else PrintGraphicMedia();
             }
-            catch
+            catch(Exception exc)
             {
                Client.Pages.MainPage.ShowMessage(ApiServer.ErrorMessageForClient);
             }
