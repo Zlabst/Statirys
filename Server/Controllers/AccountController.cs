@@ -21,21 +21,7 @@ namespace Server.Controllers
     public class AccountController : ApiController
     {
         private EFRepository repository = new EFRepository();
-        private static Timer timer = new Timer(1000 * 60 * 60 * 24);//период - 24 часа
-
-
-        /// <summary>
-        /// Инициализирует таймер
-        /// Должен быть вызван ВРУЧНУЮ
-        /// </summary>
-        /// <returns></returns>
-        [HttpPut]
-        public string StartTimer()
-        {
-            timer.Elapsed += Timer_Elapsed;
-            timer.Start();
-            return "OK Started";
-        }
+      
         [HttpPost]
         public string SaveAccount([FromBody] Account account)
         {
@@ -59,41 +45,7 @@ namespace Server.Controllers
         {
             return "OK Redirected";
         }
-
-        /// <summary>
-        /// Вызывается таймером
-        /// Собирает данные и обновляет записи всех юзеров в БД
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="ElapsedEventArgs"/> instance containing the event data.</param>
-        private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            try
-            {
-                using (AccountController accountController = new AccountController())
-                {
-                    Account[] accounts =
-                             accountController.repository.Accounts.ToArray();//получение всех аккаунтов из БД
-                    foreach (Account account in accounts)
-                    {
-
-                        string response = ApiServer.UsersSelf(account.AccessToken);
-                        dynamic dyn = JsonConvert.DeserializeObject<dynamic>(response);
-                        account.UpdateInformation((int)dyn.data.counts.followed_by,
-                                                  (int)dyn.data.counts.follows,
-                                                  0,
-                                                  (int)dyn.data.counts.media);
-
-                        accountController.repository.Save(account);
-                    }
-                }
-            }
-            catch
-            {
-
-            }
-        }
-
+        
         //Http методы
         private static string POST(string Url, string Data)
         {
