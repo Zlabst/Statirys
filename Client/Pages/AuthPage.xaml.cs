@@ -61,7 +61,7 @@ namespace Client
                               "client_id=" + client_id +
                               "&redirect_uri=" + redirect_uri +
                               "&response_type=code" +
-                              "&scope=public_content+follower_list";
+                              "&scope=likes+comments";
 
             AuthWebBrowser.Source = new Uri(uriToGetCode);
         }

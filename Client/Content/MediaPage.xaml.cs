@@ -65,14 +65,7 @@ namespace Client.Content
 
                         int comments = (int)o.comments.count;
                         int likes = (int)o.likes.count;
-                        string mediaId = null;
-                        try
-                        {
-                          mediaId = (string)o?.caption?.id;
-                        }
-                        catch
-                        {
-                        }
+
                         BitmapImage bitmapImage = new BitmapImage();
                         bitmapImage.BeginInit();
                         bitmapImage.UriSource = new Uri((string)o.images.standard_resolution.url);
@@ -88,7 +81,7 @@ namespace Client.Content
 
                         MediaGrid.Children.Add(image);
 
-                        InfoTabForImages info = new InfoTabForImages(mediaId);
+                        InfoTabForImages info = new InfoTabForImages();
                         info.HorizontalAlignment = HorizontalAlignment.Stretch;
                         info.Likes.Text = likes.ToString();
                         info.Comments.Text = comments.ToString();
