@@ -75,6 +75,12 @@ namespace Domen
             data += maxId == "" ? "" : "&max_id=" + maxId;
             return GET(uri, data);
         }
+        public static string MediaMediaId(string accessToken, string mediaId)
+        {
+            string uri = "https://api.instagram.com/v1/media/{" + mediaId+"}";
+            string data = "access_token=" + accessToken;
+            return GET(uri, data);
+        }
 
         //HTTP методы
         public static string GET(string Url, string Data = "")
@@ -85,7 +91,7 @@ namespace Domen
             else
                 req = WebRequest.Create(Url);
 
-            WebResponse resp = req.GetResponse();
+                WebResponse resp = req.GetResponse();
             Stream stream = resp.GetResponseStream();
             StreamReader sr = new StreamReader(stream);
             string Out = sr.ReadToEnd();
