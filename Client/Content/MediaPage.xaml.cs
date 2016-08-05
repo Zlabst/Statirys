@@ -121,6 +121,12 @@ namespace Client.Content
             }
 
         }
+        private void UserControl_Initialized(object sender, EventArgs e)
+        {
+            LoadMoreButton_Click(sender, null); //запускает загрузку первых 3х фото
+            if (LoadMoreButton.IsEnabled == true)
+                LoadMoreButton_Click(sender, null);
+        }
         /// <summary>
         ///  Масштабирует размер фото
         /// </summary>
@@ -145,6 +151,8 @@ namespace Client.Content
         //координаты следующей фото
         static int nextGridX = 0;
         static int nextGridY = 0;
+
+       
     }
 
 }
