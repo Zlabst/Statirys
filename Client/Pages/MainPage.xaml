@@ -78,10 +78,7 @@
                     <!--<TextBlock Text="Логин:" FontSize="20" Style="{StaticResource Title}" />
                     <TextBlock Grid.Row="1"  FontSize="20" Text="Имя:" Style="{StaticResource Title}" />
                     <TextBlock Grid.Row="2" Text="Биография:" FontSize="20" Style="{StaticResource Title}" />-->
-                    <TextBlock Grid.Column="0" Grid.Row="0" x:Name="UserName" FontSize="20" Text="Fixed" Style="{StaticResource Fixed}" Margin="10,0,0,0"/>
-                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="FullName" FontSize="20" Text="Fixed" Style="{StaticResource Fixed}" Margin="10,0,0,0"/>
-                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="Bio" FontSize="20" Text="Fixed"  Style="{StaticResource Fixed}" Margin="10,0,0,0"/>
-
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="UserName" FontSize="20" Text="Fixed" Style="{StaticResource Fixed}" Margin="10,0,0,0"/>
                 </Grid>
 
             </Grid>

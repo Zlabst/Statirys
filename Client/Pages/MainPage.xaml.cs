@@ -55,8 +55,6 @@ namespace Client.Pages
 
             //Установка основной инфы
             UserName.Text = data.data.username;
-            FullName.Text = data.data.full_name;
-            Bio.Text = data.data.bio;
             Followers.Text = data.data.counts.followed_by;
             Following.Text = data.data.counts.follows;
             Media.Text = data.data.counts.media;

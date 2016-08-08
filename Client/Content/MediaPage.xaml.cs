@@ -123,9 +123,12 @@ namespace Client.Content
         }
         private void UserControl_Initialized(object sender, EventArgs e)
         {
+            string response = ApiServer.UsersSelf(Client.Pages.MainPage.access_token);
+            dynamic dyn = JsonConvert.DeserializeObject<dynamic>(response);
+            UserName.Text = (string)dyn.data.username;
+            FullName.Text = (string)dyn.data.full_name;
+            Bio.Text = (string)dyn.data.bio;
             LoadMoreButton_Click(sender, null); //запускает загрузку первых 3х фото
-            if (LoadMoreButton.IsEnabled == true)
-                LoadMoreButton_Click(sender, null);
         }
         /// <summary>
         ///  Масштабирует размер фото
