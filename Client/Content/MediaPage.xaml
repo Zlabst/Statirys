@@ -11,12 +11,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Name="UserName" FontSize="20" Style="{StaticResource Fixed}" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="1" Name="FullName" FontSize="20"  Style="{StaticResource Fixed}" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Grid.Row="2" Name="Bio" TextTrimming="WordEllipsis" FontSize="20"  Style="{StaticResource Fixed}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="0" Name="FullName" FontSize="20"  Style="{StaticResource Fixed}" HorizontalAlignment="Left"></TextBlock>
+        <TextBlock Grid.Row="1" Name="Bio" TextTrimming="WordEllipsis" FontSize="20"  Style="{StaticResource Fixed}" HorizontalAlignment="Left"></TextBlock>
         <ScrollViewer Grid.Row="3" Name="MainScrollViewer" VerticalScrollBarVisibility="Visible">
             <StackPanel>
                 <Grid  ScrollViewer.VerticalScrollBarVisibility="Auto" Name="MediaGrid" SizeChanged="MediaGrid_SizeChanged" >

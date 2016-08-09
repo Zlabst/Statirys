@@ -87,6 +87,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Content\StatPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AuthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +108,9 @@
     </Compile>
     <Compile Include="Content\MediaPage.xaml.cs">
       <DependentUpon>MediaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\StatPage.xaml.cs">
+      <DependentUpon>StatPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
@@ -126,6 +133,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\super.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Uiconstock-Socialmedia-Instagram.ico" />
   </ItemGroup>
   <ItemGroup>

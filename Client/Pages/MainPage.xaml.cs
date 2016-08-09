@@ -6,9 +6,11 @@ using Domen;
 using FirstFloor.ModernUI.Windows.Controls;
 using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Client.Pages
@@ -22,6 +24,14 @@ namespace Client.Pages
         {
             InitializeComponent();
             Load();
+            
+            //Установка фоновой картинки
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(@"Images\super.jpg", UriKind.Relative);
+            bitmapImage.EndInit();
+            bitmapImage.CreateOptions = BitmapCreateOptions.None;
+            Main.Background = new ImageBrush(bitmapImage);
         }
 
         public void Load()//отправляет юзера серверу
@@ -52,6 +62,8 @@ namespace Client.Pages
         {
             string response = ApiServer.UsersSelf(access_token);
             dynamic data = JsonConvert.DeserializeObject<dynamic>(response);
+
+            
 
             //Установка основной инфы
             UserName.Text = data.data.username;
