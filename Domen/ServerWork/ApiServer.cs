@@ -67,13 +67,48 @@ namespace Domen
             string data = "access_token=" + accessToken;
             return GET(uri, data);
         }
-        public static string UsersSelfMediaRecent(string accessToken, int count, string maxId = "")
+        /// <summary>
+        /// Вызывать надо только для получения первой порции медиа
+        /// Остальные разы вызывать data.pagination.next_url методом GET
+        /// </summary>
+        /// <param name="accessToken">The access token.</param>
+        /// <param name="count">The count.</param>
+        /// <param name="maxId">The maximum identifier.</param>
+        /// <returns></returns>
+        public static string UsersSelfMediaRecent(string accessToken, int count)
         {
             string uri = "https://api.instagram.com/v1/users/self/media/recent/";
             string data = "access_token=" + accessToken;
             data += "&count=" + count.ToString();
-            data += maxId == "" ? "" : "&max_id=" + maxId;
             return GET(uri, data);
+        }
+        public static string UsersSelfFollows(string accessToken)
+        {
+            string uri = "https://api.instagram.com/v1/users/self/follows";
+            string data = "access_token=" + accessToken;
+            return GET(uri, data);
+        }
+
+        public static List<dynamic> GetAllMedia(string accessToken)
+        {
+            List<dynamic> result = new List<dynamic>();
+            string maxId = "";
+            while (maxId != null)
+            {
+                string response;
+                if (maxId == "")
+                    response = UsersSelfMediaRecent(accessToken, 5);
+                else
+                    response = GET(maxId);
+
+                dynamic data = JsonConvert.DeserializeObject(response);
+
+                foreach (dynamic o in data.data)
+                    result.Add(o);
+
+                maxId = data.pagination.next_url;
+             }
+            return result;
         }
 
         //HTTP методы
