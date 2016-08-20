@@ -4,17 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-             mc:Ignorable="d"
-             xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
+             mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <cm:BackgroundWorker x:Name="backgroundWorker" x:Key="BackgroundWorker" DoWork="backgroundWorker_DoWork" RunWorkerCompleted="backgroundWorker_RunWorkerCompleted"></cm:BackgroundWorker>
-    </UserControl.Resources>
-    <Grid>
-        <mui:ModernProgressRing Name="ProgressRing" IsActive="False"  Height="60" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center"></mui:ModernProgressRing>
+    <Grid Name="GraphicGrid"  Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
 
-        <Grid Name="GraphicGrid"  Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
-
-        </Grid>
-    </Grid>
 </UserControl>
