@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="Client.Content.StatPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800" Initialized="UserControl_Initialized">
+    <UserControl.Resources>
+        <cm:BackgroundWorker x:Name="backgroundWorker" x:Key="BackgroundWorker" DoWork="BackgroundWorker_DoWork" RunWorkerCompleted="BackgroundWorker_RunWorkerCompleted"></cm:BackgroundWorker>
+    </UserControl.Resources>
+    <Grid >
+       <mui:ModernProgressRing Name="ProgressRing" IsActive="False"  Height="60" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center"></mui:ModernProgressRing>
+
+        <Grid Name="MainGrid">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock HorizontalAlignment="Left"  Grid.Row="0" Grid.Column="0" Text="Лайки" Margin="0,0,0,0" FontSize="30" Style="{StaticResource Title}" />
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <TextBlock Text="Общее количество:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Name="TotalLikes" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
+                            <TextBlock Text="лайков" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+                            <TextBlock Text="Среднее число (Фото + Видео):" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Name="LikesPerMedia" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
+                            <TextBlock Text="лайков" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <TextBlock Text="В среднем фото набирает" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Name="LikesPerFoto" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
+                            <TextBlock Text="лайков" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                            <TextBlock Text="Самое популярное фото:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <Grid Margin="60,0,0,0" Name="PopularFoto"></Grid>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <TextBlock Text="В среднем видео набирает" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Name="LikesPerVideo" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
+                            <TextBlock Text="лайков" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
+                            <TextBlock Text="Самое популярное видео:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <Grid Name="PopularVideo"  Margin="60,0,0,0"></Grid>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock HorizontalAlignment="Left"  Grid.Row="0" Grid.Column="0" Text="Комментарии" Margin="0,0,0,0" FontSize="30" Style="{StaticResource Title}" />
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <TextBlock Text="Общее количество:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Name="TotalComments" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
+                            <TextBlock Text="комментариев" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <TextBlock Text="Среднее число (Фото + Видео):" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Name="CommentsPerMedia" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
+                            <TextBlock Text="комментариев" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <TextBlock Text="В среднем фото получает" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Name="CommentsPerFoto" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
+                            <TextBlock Text="комментариев" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                            <TextBlock Text="Фото с наибольшим числом комментариев:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <Grid Width="250" Margin="60,0,0,0" Name="CommentPopularFoto"></Grid>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <TextBlock Text="В среднем видео получаетет" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Name="CommentsPerVideo" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
+                            <TextBlock Text="комментариев" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
+                            <TextBlock Text="Видео с наибольшим числом комментариев:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <Grid Width="250" Name="CommentPopularVideo"  Margin="60,0,0,0"></Grid>
+                        </StackPanel>
+
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+
+        </Grid>
+    </Grid>
+</UserControl>

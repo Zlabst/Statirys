@@ -6,9 +6,11 @@ using Domen;
 using FirstFloor.ModernUI.Windows.Controls;
 using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Client.Pages
@@ -22,6 +24,8 @@ namespace Client.Pages
         {
             InitializeComponent();
             Load();
+
+          
         }
 
         public void Load()//отправляет юзера серверу
@@ -36,8 +40,8 @@ namespace Client.Pages
                                               (long)dyn.data.id)
                 { AccessToken = access_token };
                 insta_id = account.InstaId.ToString();
-
-                if (ApiServer.GetAccount(account.InstaId)==null)
+                
+                if (ApiServer.GetAccount(account.InstaId) == null )
                 {
                     ApiServer.PostAccount(account);
                 }
@@ -53,14 +57,14 @@ namespace Client.Pages
             string response = ApiServer.UsersSelf(access_token);
             dynamic data = JsonConvert.DeserializeObject<dynamic>(response);
 
+
+
             //Установка основной инфы
             UserName.Text = data.data.username;
-            FullName.Text = data.data.full_name;
-            Bio.Text = data.data.bio;
             Followers.Text = data.data.counts.followed_by;
             Following.Text = data.data.counts.follows;
             Media.Text = data.data.counts.media;
-            
+
             //Установка фотографии профиля
             BitmapImage profileFoto = new BitmapImage();
             profileFoto.BeginInit();
@@ -69,16 +73,7 @@ namespace Client.Pages
             MainPhoto1.Source = profileFoto;
         }
 
-        //Управление табом прогресса (пока не используются)
-        internal void StartProgressing()
-        {
-            MainProgressBar.IsActive = true;
-        }
-        internal void StopProgressing()
-        {
-            MainProgressBar.IsActive = false;
-        }
-      
+    
         public static void ShowMessage(string text)//"Прокачанный" MessageBox
         {
             var dlg = new ModernDialog
@@ -94,11 +89,11 @@ namespace Client.Pages
         //Обработчики событий
         private static void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-              Environment.Exit(0);            
+            Environment.Exit(0);
         }
         private void Question_Click(object sender, RoutedEventArgs e)
         {
-            string text = "Продукт произведён в России в 2016 году компанией IRYS.";
+            string text = "Продукт разработан в России в 2016 году компанией IRYS.\nВерсия : 1.01\n© IRYS";
             var dlg = new ModernDialog
             {
                 Title = "Statirys",
@@ -116,10 +111,8 @@ namespace Client.Pages
         {
             try
             {
-                StartProgressing();
                 Client.Content.MediaPage.Reset();
                 UpdatePage();
-                StopProgressing();
             }
             catch
             {
@@ -128,7 +121,8 @@ namespace Client.Pages
             }
         }
 
-        internal static string access_token = "2242190593.8e4243a.644c8996283f481bb5d68239388824e7";//тестовый access_token (yurij_volkov)
+        internal static ModernProgressRing ProgressRing;//доступ к прогресс бару текущего Pag'a
+        internal static string access_token = "3213459321.8e4243a.c5f98b4186a54608ba43584f45feca0d";//тестовый access_token (yurij_volkov)
         internal static string insta_id;//id юзера
 
     }

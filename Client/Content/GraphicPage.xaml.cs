@@ -7,6 +7,9 @@ using System.Windows.Controls;
 using Domen;
 using System.Drawing;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows;
 
 namespace Client.Content
 {
@@ -15,6 +18,8 @@ namespace Client.Content
     /// </summary>
     public partial class GraphicPage : UserControl, IContent
     {
+        private BackgroundWorker backgroundWorker;
+
         public GraphicPage()
         {
             InitializeComponent();
@@ -26,69 +31,25 @@ namespace Client.Content
         /// <param name="e">An object that contains the navigation data.</param>
         public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
         {
-            try
-            {
-                graphicType = (GraphicType)int.Parse(e.Fragment);
-                if (graphicType == GraphicType.Followers)
-                    PrintGraphicFollowers();
-                else if (graphicType == GraphicType.Following)
-                    PrintGraphicFollowing();
-                else PrintGraphicMedia();
-            }
-            catch(Exception exc)
-            {
-               Client.Pages.MainPage.ShowMessage(ApiServer.ErrorMessageForClient);
-            }
-
+            graphicType = (GraphicType)int.Parse(e.Fragment);
+            ProgressRing.IsActive = true;
+            backgroundWorker = (BackgroundWorker)this.FindResource("BackgroundWorker");
+            backgroundWorker.RunWorkerAsync(graphicType);
         }
-        public void PrintGraphicFollowers()
+
+        public System.Windows.Controls.Image PrintGraphic(List<int> y, List<DateTime> x, string xLabel, string yLabel)
         {
-            Account account = ApiServer.GetAccount(long.Parse(Pages.MainPage.insta_id));
-
-            Bitmap graph = Fomins.FominsFunctionality.GetGraph(account.GetFollowersArray(), account.GetTimeArray(),
-                                                "Время", "Подписчики", "");
-
+            Bitmap graph = Fomins.FominsFunctionality.GetGraph(y, x, xLabel, yLabel, "");
             System.Windows.Controls.Image image = new System.Windows.Controls.Image();
             image.Source = ApiServer.Bitmap2BitmapImage(graph);
 
             Grid.SetRow(image, 0);
             Grid.SetColumn(image, 0);
 
-            GraphicGrid.Children.Add(image);
-
+            return image;
         }
-        public void PrintGraphicFollowing()
-        {
-            Account account = ApiServer.GetAccount(long.Parse(Pages.MainPage.insta_id));
 
-            Bitmap graph = Fomins.FominsFunctionality.GetGraph(account.GetFollowingArray(), account.GetTimeArray(),
-                                                "Время", "Подписки", "");
-            //graph = new Bitmap("iamge.png");
-            System.Windows.Controls.Image image = new System.Windows.Controls.Image();
-            image.Source = ApiServer.Bitmap2BitmapImage(graph);
 
-            Grid.SetRow(image, 0);
-            Grid.SetColumn(image, 0);
-
-            GraphicGrid.Children.Add(image);
-
-        }
-        public void PrintGraphicMedia()
-        {
-            Account account = ApiServer.GetAccount(long.Parse(Pages.MainPage.insta_id));
-
-            Bitmap graph = Fomins.FominsFunctionality.GetGraph(account.GetMediaArray(), account.GetTimeArray(),
-                                                 "Время", "Медиа", "");
-            //graph = new Bitmap("iamge.png");
-            System.Windows.Controls.Image image = new System.Windows.Controls.Image();
-            image.Source = ApiServer.Bitmap2BitmapImage(graph);
-
-            Grid.SetRow(image, 0);
-            Grid.SetColumn(image, 0);
-
-            GraphicGrid.Children.Add(image);
-
-        }
 
         //Не реализованные методы
         public void OnNavigatedFrom(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
@@ -102,7 +63,42 @@ namespace Client.Content
         }
 
         GraphicType graphicType;
-      
-        enum GraphicType { Followers, Following, Media}
+
+        enum GraphicType { Followers, Following, Media }
+
+        private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            try
+            {
+                Account account = ApiServer.GetAccount(long.Parse(Pages.MainPage.insta_id));
+
+                e.Result = account;
+
+                
+            }
+            catch (Exception exc)
+            {
+                Client.Pages.MainPage.ShowMessage(ApiServer.ErrorMessageForClient);
+            }
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+                MessageBox.Show(e.Error.Message);
+            else
+            {
+                Account account = (Account)e.Result;
+                System.Windows.Controls.Image graph;
+                if (graphicType == GraphicType.Followers)
+                    graph = PrintGraphic(account.GetFollowersArray(), account.GetTimeArray(), "Подписчики", "Время");
+                else if (graphicType == GraphicType.Following)
+                    graph = PrintGraphic(account.GetFollowingArray(), account.GetTimeArray(), "Подписки", "Время");
+                else graph = PrintGraphic(account.GetMediaArray(), account.GetTimeArray(), "Медиа", "Время");
+
+                GraphicGrid.Children.Add(graph);
+                ProgressRing.IsActive = false;
+            }
+            }
     }
 }
