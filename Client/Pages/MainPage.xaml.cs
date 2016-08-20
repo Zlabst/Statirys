@@ -93,7 +93,7 @@ namespace Client.Pages
         }
         private void Question_Click(object sender, RoutedEventArgs e)
         {
-            string text = "Продукт произведён в России в 2016 году компанией IRYS.";
+            string text = "Продукт разработан в России в 2016 году компанией IRYS.\nВерсия : 1.01\n© IRYS";
             var dlg = new ModernDialog
             {
                 Title = "Statirys",
@@ -122,7 +122,7 @@ namespace Client.Pages
         }
 
         internal static ModernProgressRing ProgressRing;//доступ к прогресс бару текущего Pag'a
-        internal static string access_token = "2242190593.8e4243a.644c8996283f481bb5d68239388824e7";//тестовый access_token (yurij_volkov)
+        internal static string access_token = "3213459321.8e4243a.c5f98b4186a54608ba43584f45feca0d";//тестовый access_token (yurij_volkov)
         internal static string insta_id;//id юзера
 
     }

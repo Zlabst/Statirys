@@ -88,7 +88,7 @@
             <mui:ModernTab.Links>
                 <mui:Link DisplayName="Мой аккаунт" Source="Content/MediaPage.xaml" ></mui:Link>
                 <mui:Link DisplayName="Лайки и Комментарии" Source="Content/StatPage.xaml"></mui:Link>
-                <mui:Link DisplayName="Подписки и Подписчики" Source="Content/RelationsPage.xaml"></mui:Link>
+                <!--<mui:Link DisplayName="Подписки и Подписчики" Source="Content/RelationsPage.xaml"></mui:Link>-->
                 <mui:Link DisplayName="График подписок" Source="Content/GraphicPage.xaml#1"></mui:Link>
                 <mui:Link DisplayName="График подписчиков" Source="Content/GraphicPage.xaml#0"></mui:Link>
                 <mui:Link DisplayName="График медиа" Source="Content/GraphicPage.xaml#2"></mui:Link>
