@@ -67,7 +67,8 @@ namespace NewChart
                 {
                     Title=yTitle,
                     Values = GetData(date,data),
-                    StrokeThickness = 1
+                    StrokeThickness = 1,
+                    DataLabels=true,
                 }
             };
 
