@@ -41,7 +41,8 @@ namespace Graphics
                 new ColumnSeries
                 {
                     Title = "Media",
-                    Values = this.data
+                    Values = this.data,
+                    DataLabels=true
                 }
             };
             Labels = this.date;
