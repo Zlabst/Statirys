@@ -55,9 +55,9 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock  Grid.Row="0" Grid.Column="0" Text="Подписчиков:" Margin="0,-5,0,0" FontSize="20" Style="{StaticResource Title}" />
-                    <TextBlock  Grid.Row="1" Grid.Column="0" Text="Подписок:" Margin="0,-5,0,0" FontSize="20"   Style="{StaticResource Title}" />
-                    <TextBlock  Grid.Row="2" Grid.Column="0" Text="Медиа:" Margin="0,-5,0,0" FontSize="20" Style="{StaticResource Title}" />
+                    <TextBlock  Grid.Row="0" Grid.Column="0" Text="Followers:" Margin="0,-5,0,0" FontSize="20" Style="{StaticResource Title}" />
+                    <TextBlock  Grid.Row="1" Grid.Column="0" Text="Following:" Margin="0,-5,0,0" FontSize="20"   Style="{StaticResource Title}" />
+                    <TextBlock  Grid.Row="2" Grid.Column="0" Text="Media:" Margin="0,-5,0,0" FontSize="20" Style="{StaticResource Title}" />
                     <TextBlock  Grid.Column="1" Grid.Row="0" x:Name="Followers" Text="Fixed" FontSize="20" Style="{StaticResource Fixed}" Margin="10,0,0,0"/>
                     <TextBlock  Grid.Column="1" Grid.Row="1" x:Name="Following" Text="Fixed" FontSize="20" Style="{StaticResource Fixed}" Margin="10,0,0,0"/>
                     <TextBlock  Grid.Column="1" Grid.Row="2" x:Name="Media" Text="Fixed" FontSize="20" Style="{StaticResource Fixed}" Margin="10,0,0,0"/>
@@ -86,12 +86,12 @@
 
         <mui:ModernTab SelectedSource="Content/MediaPage.xaml" Name="MainFunctionality" Layout="List" Grid.Row="1"    >
             <mui:ModernTab.Links>
-                <mui:Link DisplayName="Мой аккаунт" Source="Content/MediaPage.xaml" ></mui:Link>
-                <mui:Link DisplayName="Лайки и Комментарии" Source="Content/StatPage.xaml"></mui:Link>
+                <mui:Link DisplayName="Account" Source="Content/MediaPage.xaml" ></mui:Link>
+                <mui:Link DisplayName="Likes and Comments" Source="Content/StatPage.xaml"></mui:Link>
                 <!--<mui:Link DisplayName="Подписки и Подписчики" Source="Content/RelationsPage.xaml"></mui:Link>-->
-                <mui:Link DisplayName="График подписок" Source="Content/GraphicPage.xaml#1"></mui:Link>
-                <mui:Link DisplayName="График подписчиков" Source="Content/GraphicPage.xaml#0"></mui:Link>
-                <mui:Link DisplayName="График медиа" Source="Content/GraphicPage.xaml#2"></mui:Link>
+                <mui:Link DisplayName="Following chart" Source="Content/GraphicPage.xaml#1"></mui:Link>
+                <mui:Link DisplayName="Followers chart" Source="Content/GraphicPage.xaml#0"></mui:Link>
+                <mui:Link DisplayName="Media chart" Source="Content/GraphicPage.xaml#2"></mui:Link>
             </mui:ModernTab.Links>
         </mui:ModernTab>
     </Grid>

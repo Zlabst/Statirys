@@ -51,7 +51,7 @@ namespace Client.Content
             //System.Windows.Controls.Image image = new System.Windows.Controls.Image();
             //image.Source = ApiServer.Bitmap2BitmapImage(graph);
 
-            NewChart.Chart followersChart = new NewChart.Chart(account.GetTimeArray(), account.GetFollowersArray(), "Время", "Подписчики");
+            NewChart.Chart followersChart = new NewChart.Chart(account.GetTimeArray(), account.GetFollowersArray(), "Time", "Followers");
 
             Frame frame = new Frame();
             GraphicGrid.Children.Clear();
@@ -73,7 +73,7 @@ namespace Client.Content
             //System.Windows.Controls.Image image = new System.Windows.Controls.Image();
             //image.Source = ApiServer.Bitmap2BitmapImage(graph);
 
-            NewChart.Chart followersChart = new NewChart.Chart(account.GetTimeArray(), account.GetFollowingArray(), "Время", "Подписки");
+            NewChart.Chart followersChart = new NewChart.Chart(account.GetTimeArray(), account.GetFollowingArray(), "Time", "Following");
 
             Frame frame = new Frame();
             GraphicGrid.Children.Clear();

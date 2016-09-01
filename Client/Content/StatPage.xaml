@@ -21,33 +21,33 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <StackPanel>
-                        <TextBlock HorizontalAlignment="Left"  Grid.Row="0" Grid.Column="0" Text="Лайки" Margin="0,0,0,0" FontSize="30" Style="{StaticResource Title}" />
+                        <TextBlock HorizontalAlignment="Left"  Grid.Row="0" Grid.Column="0" Text="Likes" Margin="0,0,0,0" FontSize="30" Style="{StaticResource Title}" />
                         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                            <TextBlock Text="Общее количество:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Text="Total:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
                             <TextBlock Name="TotalLikes" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
-                            <TextBlock Text="лайков" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Text="likes" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
-                            <TextBlock Text="Среднее число (Фото + Видео):" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Text="Average (Photo + Video):" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
                             <TextBlock Name="LikesPerMedia" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
-                            <TextBlock Text="лайков" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Text="likes" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                            <TextBlock Text="В среднем фото набирает" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Text="On the average photo gets" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
                             <TextBlock Name="LikesPerFoto" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
-                            <TextBlock Text="лайков" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Text="likes" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
                         </StackPanel>
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-                            <TextBlock Text="Самое популярное фото:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Text="The most popular:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
                             <Grid Margin="60,0,0,0" Name="PopularFoto"></Grid>
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                            <TextBlock Text="В среднем видео набирает" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Text="On the average video gets" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
                             <TextBlock Name="LikesPerVideo" Text="None" Margin="10,4,0,0" FontSize="20" Style="{StaticResource Fixed}" />
-                            <TextBlock Text="лайков" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Text="likes" Margin="10,0,0,0" FontSize="20" Style="{StaticResource Title}" />
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
-                            <TextBlock Text="Самое популярное видео:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
+                            <TextBlock Text="The most popular video:" Margin="0,0,0,0" FontSize="20" Style="{StaticResource Title}" />
                             <Grid Name="PopularVideo"  Margin="60,0,0,0"></Grid>
                         </StackPanel>
 
