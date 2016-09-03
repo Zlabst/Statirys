@@ -2,6 +2,7 @@
 // Эл. почта : yura21998@mail.ru
 // Более на "github.com/yurijvolkov"
 
+using Client.Content;
 using Domen;
 using FirstFloor.ModernUI.Windows.Controls;
 using Newtonsoft.Json;
@@ -25,7 +26,13 @@ namespace Client.Pages
             InitializeComponent();
             Load();
 
-          
+            //Для возможности доступа к ним из другого класса
+            ProgressRing = MainProgressRing;
+            ProgressPercentBlock = MainProgressPercent;
+            TotalLikesBlock = TotalLikes;
+            LikesPerMediaBlock = LikesPerMedia;
+            MostLikedMediaBlock = MostLikedMedia;
+            new StatPage(); //для обновления инфы в шапке Статириса
         }
 
         public void Load()//отправляет юзера серверу
@@ -40,8 +47,8 @@ namespace Client.Pages
                                               (long)dyn.data.id)
                 { AccessToken = access_token };
                 insta_id = account.InstaId.ToString();
-                
-                if (ApiServer.GetAccount(account.InstaId) == null )
+
+                if (ApiServer.GetAccount(account.InstaId) == null)
                 {
                     ApiServer.PostAccount(account);
                 }
@@ -57,13 +64,14 @@ namespace Client.Pages
             string response = ApiServer.UsersSelf(access_token);
             dynamic data = JsonConvert.DeserializeObject<dynamic>(response);
 
-
-
             //Установка основной инфы
             UserName.Text = data.data.username;
             Followers.Text = data.data.counts.followed_by;
             Following.Text = data.data.counts.follows;
             Media.Text = data.data.counts.media;
+            FollowersCount = (int)data.data.counts.followed_by;
+            FollowingCount = (int)data.data.counts.follows; 
+            MediaCount = (int)data.data.counts.media;
 
             //Установка фотографии профиля
             BitmapImage profileFoto = new BitmapImage();
@@ -73,7 +81,7 @@ namespace Client.Pages
             MainPhoto1.Source = profileFoto;
         }
 
-    
+
         public static void ShowMessage(string text)//"Прокачанный" MessageBox
         {
             var dlg = new ModernDialog
@@ -121,9 +129,18 @@ namespace Client.Pages
             }
         }
 
-        internal static ModernProgressRing ProgressRing;//доступ к прогресс бару текущего Pag'a
-        internal static string access_token = "3213459321.8e4243a.c5f98b4186a54608ba43584f45feca0d";//тестовый access_token (yurij_volkov)
+        internal static string access_token = "2242190593.8e4243a.644c8996283f481bb5d68239388824e7";//тестовый access_token (yurij_volkov)
         internal static string insta_id;//id юзера
+
+        //Обеспечение доступа из других классов
+        internal static int FollowersCount { get; private set; }
+        internal static int MediaCount { get; private set; }
+        internal static int FollowingCount { get; private set; }
+        internal static TextBlock TotalLikesBlock;
+        internal static TextBlock LikesPerMediaBlock;
+        internal static TextBlock MostLikedMediaBlock;
+        internal static ModernProgressRing ProgressRing;//доступ к прогресс бару текущего Pag'a
+        internal static TextBlock ProgressPercentBlock;
 
     }
 }

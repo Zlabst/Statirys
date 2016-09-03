@@ -11,8 +11,10 @@
         <cm:BackgroundWorker x:Name="backgroundWorker" x:Key="BackgroundWorker" DoWork="BackgroundWorker_DoWork" RunWorkerCompleted="BackgroundWorker_RunWorkerCompleted"></cm:BackgroundWorker>
     </UserControl.Resources>
     <Grid >
-       <mui:ModernProgressRing Name="ProgressRing" IsActive="False"  Height="60" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center"></mui:ModernProgressRing>
-
+        <StackPanel Visibility="Hidden" Name="LoadingPanel" VerticalAlignment="Center">
+            <mui:ModernProgressRing Name="ProgressRing" IsActive="True"  Height="60" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center"></mui:ModernProgressRing>
+            <TextBlock Margin="0,50,0,0" Name="ProgressPercent" Text="0%"  Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="0" FontSize="20" Foreground="CadetBlue"  Style="{StaticResource Fixed}"/>
+        </StackPanel>
         <Grid Name="MainGrid">
             <ScrollViewer HorizontalScrollBarVisibility="Auto">
                 <Grid>
