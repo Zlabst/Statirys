@@ -10,8 +10,9 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-
+using System.Windows.Threading;
 
 namespace Domen
 {
@@ -90,7 +91,7 @@ namespace Domen
         }
 
 
-        public static List<dynamic> GetAllMedia(string accessToken)
+        public static List<dynamic> GetAllMedia(string accessToken, Action<int> updateProgress)
         {
             List<dynamic> result = new List<dynamic>();
             string maxId = "";
@@ -105,7 +106,10 @@ namespace Domen
                 dynamic data = JsonConvert.DeserializeObject(response);
 
                 foreach (dynamic o in data.data)
+                {
                     result.Add(o);
+                    updateProgress.Invoke(result.Count);
+                }
 
                 maxId = data.pagination.next_url;
              }

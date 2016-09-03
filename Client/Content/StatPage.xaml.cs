@@ -24,8 +24,15 @@ namespace Client.Content
         {
             InitializeComponent();
             backgroundWorker = (BackgroundWorker)this.FindResource("BackgroundWorker");
+
+            //Необходимо для отображения прогресса загрузки
             ProgressRing.IsActive = true;
             MainGrid.Visibility = Visibility.Hidden;
+            LoadingPanel.Visibility = Visibility.Visible;
+            MainPage.ProgressRing.Visibility = Visibility.Visible;
+            MainPage.ProgressPercentBlock.Visibility = Visibility.Visible;
+            MainPage.ProgressPercentBlock.Text = "0%";
+
             backgroundWorker.RunWorkerAsync();
 
         }
@@ -37,8 +44,21 @@ namespace Client.Content
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            var list = Domen.ApiServer.GetAllMedia(Pages.MainPage.access_token);
+           
+            Action<int> updateProgress = new Action<int>((alreadyLoaded) =>
+            {
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    if (MainPage.MediaCount != 0)
+                    {
+                        ProgressPercent.Text = Math.Round((((double)alreadyLoaded / MainPage.MediaCount) * 100), 0).ToString() + "%";
+                        MainPage.ProgressPercentBlock.Text = ProgressPercent.Text;
+                    }
+                }));
+            });
+            var list = Domen.ApiServer.GetAllMedia(Pages.MainPage.access_token, updateProgress);
             e.Result = list;
+
         }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -124,6 +144,10 @@ namespace Client.Content
             CommentsPerFoto.Text = totalFotos != 0 ? Math.Round(((double)totalCommentsFoto) / totalFotos, 1).ToString() : "0";
             CommentsPerVideo.Text = totalVideos != 0 ? Math.Round(((double)totalCommentsVideo) / totalVideos, 1).ToString() : "0";
 
+            //Установка инфы на шапке приложения
+            MainPage.TotalLikesBlock.Text = TotalComments.Text;
+            MainPage.LikesPerMediaBlock.Text = LikesPerMedia.Text;
+            MainPage.MostLikedMediaBlock.Text = Math.Max(maxLikesFoto, maxLikesVideo).ToString();
 
             if (maxLikesFoto != -1)
             {
@@ -166,7 +190,11 @@ namespace Client.Content
                 int likes = (int)maxCommentsVideoPost.likes.count;
                 MediaPage.PutFoto((string)maxCommentsVideoPost.images.standard_resolution.url, likes, maxCommentsVideo, CommentPopularVideo, 0, 0);
             }
+
             ProgressRing.IsActive = false;
+            LoadingPanel.Visibility = Visibility.Hidden;
+            MainPage.ProgressPercentBlock.Visibility = Visibility.Hidden;
+            MainPage.ProgressRing.Visibility = Visibility.Hidden;
 
             MainGrid.Visibility = Visibility.Visible;
         }
